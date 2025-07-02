@@ -298,3 +298,6 @@ The application supports:
 ## 📄 License
 
 This project is licensed under the MIT License. 
+
+
+This project is a part of a hackathon run by https://www.katomaran.com
