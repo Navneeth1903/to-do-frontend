@@ -66,7 +66,12 @@ export default function Auth() {
     try {
       if (activeTab === 'signup') {
         // Real sign up
-        const res = await fetch('/api/auth/signup', {
+        console.log('Attempting signup with email:', formData.email);
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || '';
+        const signupUrl = `${apiUrl}/api/auth/signup`;
+        console.log('Signup URL:', signupUrl);
+
+        const res = await fetch(signupUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -75,8 +80,12 @@ export default function Auth() {
             password: formData.password,
           }),
         });
+        
+        console.log('Signup response status:', res.status);
+        
         if (!res.ok) {
           const data = await res.json();
+          console.error('Signup failed:', data);
           setErrors({ general: data.message || 'Sign up failed.' });
           setLoading(false);
           return;
@@ -88,7 +97,12 @@ export default function Auth() {
         }, 2000);
       } else {
         // Real login
-        const res = await fetch('/api/auth/login', {
+        console.log('Attempting login with email:', formData.email);
+        const apiUrl = import.meta.env.VITE_API_BASE_URL || '';
+        const loginUrl = `${apiUrl}/api/auth/login`;
+        console.log('Login URL:', loginUrl);
+
+        const res = await fetch(loginUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -96,8 +110,12 @@ export default function Auth() {
             password: formData.password,
           }),
         });
+        
+        console.log('Login response status:', res.status);
+        
         if (!res.ok) {
           const data = await res.json();
+          console.error('Login failed:', data);
           setErrors({ general: data.message || 'Login failed.' });
           setLoading(false);
           return;
