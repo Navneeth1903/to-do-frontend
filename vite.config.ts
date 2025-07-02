@@ -25,7 +25,7 @@ export default defineConfig({
       deny: ["**/.*"],
     },
     proxy: {
-      '/api': 'http://localhost:5000',
+      '/api': 'https://to-do-backend-klga.onrender.com',
     },
   },
   define: {
